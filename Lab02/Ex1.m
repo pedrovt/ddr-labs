@@ -1,7 +1,7 @@
 
 % Exercise 1a
 % Given info
-clc
+
 clear
 
 probs = [ 0.99; 0.999; 0.9999; 0.99999];
@@ -21,42 +21,33 @@ p_e = p_n * probs + p_i * (1-probs);
 p_ns = p_n*probs ./ p_e;                        % probability of link in normal state
 p_is = p_i*(1-probs) ./ p_e;                    % probability of link in interference state
 
-% Exercise 1b and %1c
-format compact
-for i = 2:5
-    fprintf("=======================\nn=%d\n\n", i)
-    p_falsePositives = (p_ns).^i      
-    p_falseNegatives = (p_is).^i      
+
+% 1b 
+for n = [2 3 4 5]
+   fprintf("\nN = %d\n", n)
+   
+   % 
+   % n = 128*8
+   % i = 0
+   pError_N = 1 - (nchoosek(n_bits, i) * n_rate ^i * (1-n_rate)^(n_bits-i));    
+   pE_N = pE_N^n;
+   pE_I = 1 - (nchoosek(n_bits, i) * i_rate ^i * (1-i_rate)^(n_bits-i));    
+   pE_I = pE_I^n;
+   
+   pN = [ 0.99 0.999 0.9999 0.99999];
+   pI = 1 - pN;
+   
+   pN_E = pE_N*pN./(pE_N*pN + pE_I*pI)*100;
+   pN_E'
 end
-format
 
-% 1b
-pN = 0.99;
-% prob normal state
-n_error = 10^-7;
-% bit error rate in normal state
-i_error = 10^-3;
-% bit error rate in interference state
-nbits = 128 * 8;
-n = 2;
-
-% prob all control frames w/ error given normal state
-pAEgN = (1-(1-n_error)^nbits)^n;
-% prob all control frames w/ error given interference state
-pAEgI = (1-(1-i_error)^nbits)^n;
-% prob error all control frames
-pErrorAll= pAEgN*pN + pAEgI*(1-pN);
-
-% prob false positive, all frames with at least one error in normal state
-probFP = (pAEgN*pN) / pErrorAll
-% prob false negative
-probFN = ((1-pAEgI)*(1-pN)) / (1-pErrorAll)
 
 
 %% 
 % ============
 %  EXERCISE 2
 % ============
+clc
 clear
 fprintf("=======================\n\n\n")
 birthRate = [1 20 10 5];
@@ -73,7 +64,8 @@ timePercentage3 = aux2(3)*timePercentage0;
 timePercentage4 = aux2(4)*timePercentage0;
 timePercentage = [timePercentage0 timePercentage1 timePercentage2 timePercentage3 timePercentage4];
 %timePercentage0+timePercentage1+timePercentage2+timePercentage3+timePercentage4
-fprintf("2.a) %d\n", timePercentage)
+fprintf("2.a) ")
+disp(timePercentage)
 
 % 2.b
 errorRate = [10^-6 10^-5 10^-4 10^-3 10^-2];
@@ -83,10 +75,11 @@ fprintf("2.b) %d\n", linkAvgErrorRate)
 % 2.c
 avgHoursEachState = [1/birthRate(1) 1/(birthRate(2)+deathRate(1)) 1/(birthRate(3)+deathRate(2)) 1/(birthRate(4)+deathRate(3)) 1/deathRate(4)]; % In hours
 avgMinutesEachState = avgHoursEachState.*60;
-fprintf("2.c) %d\n", avgMinutesEachState)
+fprintf("2.c)")
+disp(avgMinutesEachState)
 
 % 2.d
-% States in which the link is in interference state: 4(10^-3) and 5(10^-2)
+% States in which the link is in interference state: 4(10^-4) and 5(10^-2)
 probInterferenceState = timePercentage(4) + timePercentage(5);
 fprintf("2.d) %d\n", probInterferenceState)
 
@@ -96,5 +89,13 @@ fprintf("2.e) %d\n",avgBitErrorRateInInterferenceState)
 
 % 2.f
 % States in which the link is in interference state: 4(10^-3) and 5(10^-2)
-avgMinutesInterferenceState = avgMinutesEachState(4) + avgMinutesEachState(5);
-fprintf("2.e) %d\n",avgMinutesInterferenceState)
+E4 = avgMinutesEachState(4);
+E5 = avgMinutesEachState(5);
+res = E4 * 4/5;
+
+for i = 1:10
+    res = ( ((i+1) * E4) + (i * E5) )  * (1/5)^i * (4/5) + res;
+end 
+
+fprintf("2.f)")
+disp(res)
