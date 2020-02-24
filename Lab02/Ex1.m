@@ -30,6 +30,29 @@ for i = 2:5
 end
 format
 
+% 1b
+pN = 0.99;
+% prob normal state
+n_error = 10^-7;
+% bit error rate in normal state
+i_error = 10^-3;
+% bit error rate in interference state
+nbits = 128 * 8;
+n = 2;
+
+% prob all control frames w/ error given normal state
+pAEgN = (1-(1-n_error)^nbits)^n;
+% prob all control frames w/ error given interference state
+pAEgI = (1-(1-i_error)^nbits)^n;
+% prob error all control frames
+pErrorAll= pAEgN*pN + pAEgI*(1-pN);
+
+% prob false positive, all frames with at least one error in normal state
+probFP = (pAEgN*pN) / pErrorAll
+% prob false negative
+probFN = ((1-pAEgI)*(1-pN)) / (1-pErrorAll)
+
+
 %% 
 % ============
 %  EXERCISE 2
