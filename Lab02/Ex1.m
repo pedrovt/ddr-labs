@@ -1,7 +1,7 @@
-
-% Exercise 1a
-% Given info
-
+%% 
+% ============
+%  EXERCISE 1
+% ============
 clear
 
 probs = [ 0.99; 0.999; 0.9999; 0.99999];
@@ -9,36 +9,34 @@ n_rate = 10^-7;
 i_rate = 10^-3;
 n_bits = 128 * 8;
 
-% 1. obtain probability of error in normal and interference = 1 - probability of no
-% errors
+% 1. obtain probability of error in normal and interference = 
+% 1 - probability of no errors
 n = n_bits;
 i = 0;
-p_n = 1 - (nchoosek(n, i) * n_rate ^i * (1-n_rate)^(n-i));          % probability of error in normal 
-p_i = 1 - (nchoosek(n, i) * i_rate ^i * (1-i_rate)^(n-i));          % probability of error in interference 
+p_n = 1 - (nchoosek(n, i) * n_rate ^i * (1-n_rate)^(n-i));                  % probability of error in normal 
+p_i = 1 - (nchoosek(n, i) * i_rate ^i * (1-i_rate)^(n-i));                  % probability of error in interference 
 p_e = p_n * probs + p_i * (1-probs);
 
 % obtain p(error and normal/interference and error) | p(error)
-p_ns = p_n*probs ./ p_e;                        % probability of link in normal state
-p_is = p_i*(1-probs) ./ p_e;                    % probability of link in interference state
-
+p_ns = p_n*probs ./ p_e;                                                    % probability of link in normal state
+p_is = p_i*(1-probs) ./ p_e;                                                % probability of link in interference state
 
 % 1b 
-for n = [2 3 4 5]
+for n = 2:5
    fprintf("\nN = %d\n", n)
    
-   % 
-   % n = 128*8
-   % i = 0
-   pError_N = 1 - (nchoosek(n_bits, i) * n_rate ^i * (1-n_rate)^(n_bits-i));    
-   pE_N = pE_N^n;
-   pE_I = 1 - (nchoosek(n_bits, i) * i_rate ^i * (1-i_rate)^(n_bits-i));    
-   pE_I = pE_I^n;
+   p_error_normal = 1 - (nchoosek(n_bits, i) * n_rate ^i * (1-n_rate)^(n_bits-i));    
+   p_error_normal = p_error_normal^n;
+   p_error_interference = 1 - (nchoosek(n_bits, i) * i_rate ^i * (1-i_rate)^(n_bits-i));    
+   p_error_interference = p_error_interference^n;
    
-   pN = [ 0.99 0.999 0.9999 0.99999];
-   pI = 1 - pN;
+   % probability of a false positive = p(being in the normal state | 
+   % every frame received with errors)
+   %p_false_positive = p_error_normal*probs./(p_error_normal*probs + p_error_interference*(1-probs))*100
    
-   pN_E = pE_N*pN./(pE_N*pN + pE_I*pI)*100;
-   pN_E'
+   % probability of a false negative = p(being in interference state | 
+   % at least 1 frame is being received correctly, ie 1 - all frames with errors
+   p_false_negative = (1-p_error_interference)*(1-probs)./(1-(p_error_normal*probs + p_error_interference*(1-probs)))*100
 end
 
 
