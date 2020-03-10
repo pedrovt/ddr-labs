@@ -33,10 +33,13 @@ pl = 2;
 % Output parameters:
 %   AvgAvail - average availability among all mobile nodes
 %   MinAvail - minimum availability among all mobile nodes
-for i=1:3
-    for j=1:2
-        for k=1:3
-            [AvgAvail, MinAvail] = simulatorFunction(N(i),S(j),W(k),dlt,T,AP,pl);
-        end
-    end
-end
+
+[AvgAvail, MinAvail] = simulatorFunction(N(1),S(1),W(1),dlt,T,AP,pl);
+
+% for i=1:3
+%     for j=1:2
+%         for k=1:3
+%             [AvgAvail, MinAvail] = simulatorFunction(N(i),S(j),W(k),dlt,T,AP,pl);
+%         end
+%     end
+% end

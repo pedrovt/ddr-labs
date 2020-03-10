@@ -88,10 +88,10 @@ function L= ConnectedList(pos,W,AP)
 % 1. Between mobile nodes
 N = size(pos, 1);
 L = [];
-W=W^2
+auxW = W^2;
 for i = 1:N
    for j = i+1 : N
-      if (dist(i, 1) - dist(j,1))^2 + (dist(i, 2) - dist(j,2))^2 <= W
+      if (dist(i, 1) - dist(j,1))^2 + (dist(i, 2) - dist(j,2))^2 <= auxW
         L = [L; i j];
       end
    end
@@ -101,7 +101,7 @@ end
 A = size(AP, 1);
 for i = 1:N
    for j = i+1 : A
-      if (dist(i, 1) - dist(j,1))^2 + (dist(i, 2) - dist(j,2))^2 <= W
+      if (dist(i, 1) - dist(j,1))^2 + (dist(i, 2) - dist(j,2))^2 <= auxW
         L = [L; i j];
       end
    end
@@ -136,7 +136,7 @@ function C= ConnectedNodes(L,N,AP)
     for i=1:size(dist,1)
         for j=1:size(AP,1)
             % If distance isn't infinite (if there is connection)
-            if dist(i,j)~=INF
+            if dist(i,j)~=inf
                 % i node has connection to the internet
                 C(1,i) = true;
             end
