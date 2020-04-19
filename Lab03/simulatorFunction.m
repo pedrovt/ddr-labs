@@ -71,10 +71,10 @@ end
 function counter= UpdateCounter(C,counter)
 % This function increments the values of the 'counter' positions of the
 % mobile nodes that have Internet access.
-counter = counter + C;
+    counter = counter + C;
 end
 
-function L= ConnectedList(pos,W,AP)
+function L = ConnectedList(pos,W,AP)
 % Input:
 %   pos -  a matrix with N rows and 2 columns; each row identifies the (x,y)
 %          coordinates of each mobile node
@@ -85,27 +85,38 @@ function L= ConnectedList(pos,W,AP)
 %          (mobile nodes and AP nodes) with a direct wireless link
 %          between them
 
-% 1. Between mobile nodes
-N = size(pos, 1);
-L = [];
-auxW = W^2;
-for i = 1:N
-   for j = i+1 : N
-      if (dist(i, 1) - dist(j,1))^2 + (dist(i, 2) - dist(j,2))^2 <= auxW
-        L = [L; i j];
-      end
-   end
-end
+%     % 1. Between mobile nodes
+%     N = size(pos, 1);
+%     L = [];
+%     auxW = W^2;
+%     for i = 1:N
+%        for j = i+1 : N
+%           if (dist(i, 1) - dist(j,1))^2 + (dist(i, 2) - dist(j,2))^2 <= auxW
+%             L = [L; i j];
+%           end
+%        end
+%     end
+% 
+%     % 2. Between nodes and APS
+%     A = size(AP, 1);
+%     for i = 1:N
+%        for j = i+1 : A
+%           if (dist(i, 1) - dist(j,1))^2 + (dist(i, 2) - dist(j,2))^2 <= auxW
+%             L = [L; i j];
+%           end
+%        end
+%     end
 
-% 2. Between nodes and APS
-A = size(AP, 1);
-for i = 1:N
-   for j = i+1 : A
-      if (dist(i, 1) - dist(j,1))^2 + (dist(i, 2) - dist(j,2))^2 <= auxW
-        L = [L; i j];
-      end
-   end
-end
+    W_power = W^2;
+    L = [];
+    coords = [pos; AP];
+    for i=1:size(pos,1)
+        for j=i+1:size(coords,1)
+            if (coords(i,1)-coords(j,1))^2 + (coords(i,2)-coords(j,2))^2 <= W_power
+                L = [L; i,j];
+            end
+        end
+    end
 
 end
 
