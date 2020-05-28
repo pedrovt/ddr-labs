@@ -1,4 +1,4 @@
-function [PL , APD , MPD , TT, PLvoip, APDvoip, MPDvoip] = Simulator2(lambda,C,f,P, n)
+function [PL , APD , MPD , TT, PLvoip, APDvoip, MPDvoip] = Simulator4(lambda,C,f,P, n, r)
 % INPUT PARAMETERS:
 %  lambda - packet rate (packets/sec)
 %  C      - link bandwidth (Mbps)
@@ -24,7 +24,9 @@ VOIP = 2;
 %State variables:
 State = 0;          % 0 - connection free; 1 - connection bysy
 QueueOccupation= 0; % Occupation of the queue (in Bytes)
+QueueOccupationVoIP=0;
 Queue= [];          % Size and arriving time instant of each packet in the queue
+QueueVoIP=[];
 
 %Statistical Counters:
 TotalPackets= 0;       % No. of packets arrived to the system
@@ -45,7 +47,6 @@ Clock= 0;
 
 % Initializing the List of Events with the first ARRIVAL:
 EventList = [ARRIVAL , Clock + exprnd(1/lambda) , GeneratePacketSize() , 0, DATA];
-
 for i=1:n
     EventList = [EventList; ARRIVAL, Clock + 0.02*rand(), GeneratePacketSizeVoip(), 0 , VOIP];
 end 
@@ -68,7 +69,7 @@ while (TransmittedPackets + TransmittedPacketsVoip) < P               % Stopping
                     State= 1;
                     EventList = [EventList; DEPARTURE , Clock + 8*PacketSize/(C*10^6) , PacketSize , Clock, Type];
                 else
-                    if QueueOccupation + PacketSize <= f
+                    if QueueOccupation + QueueOccupationVoIP <= (f * r/100) && QueueOccupation + QueueOccupationVoIP + PacketSize
                         Queue= [Queue;PacketSize , Clock, Type];
                         QueueOccupation= QueueOccupation + PacketSize;
                     else
@@ -83,9 +84,9 @@ while (TransmittedPackets + TransmittedPacketsVoip) < P               % Stopping
                     State= 1;
                     EventList = [EventList; DEPARTURE , Clock + 8*PacketSize/(C*10^6) , PacketSize , Clock, Type];
                 else
-                    if QueueOccupation + PacketSize <= f
-                        Queue= [Queue;PacketSize , Clock, Type];
-                        QueueOccupation= QueueOccupation + PacketSize;
+                    if QueueOccupation + QueueOccupationVoIP + PacketSize <= f
+                        QueueVoIP= [QueueVoIP;PacketSize , Clock, Type];
+                        QueueOccupationVoIP= QueueOccupationVoIP + PacketSize;
                     else
                         LostPacketsVoip= LostPacketsVoip + 1;
                     end
@@ -99,12 +100,18 @@ while (TransmittedPackets + TransmittedPacketsVoip) < P               % Stopping
                     MaxDelay= Clock - ArrivalInstant;
                 end
                 TransmittedPackets= TransmittedPackets + 1;
-                if QueueOccupation > 0
+                if QueueOccupationVoIP > 0
+                    EventList = [EventList; DEPARTURE , Clock + 8*QueueVoIP(1,1)/(C*10^6) , QueueVoIP(1,1) , QueueVoIP(1,2), QueueVoIP(1,3)];
+                    QueueOccupationVoIP= QueueOccupationVoIP - QueueVoIP(1,1);
+                    QueueVoIP(1,:)= [];
+                else
+                    if QueueOccupation > 0
                     EventList = [EventList; DEPARTURE , Clock + 8*Queue(1,1)/(C*10^6) , Queue(1,1) , Queue(1,2), Queue(1,3)];
                     QueueOccupation= QueueOccupation - Queue(1,1);
-                    Queue(1,:)= [];
-                else
-                    State= 0;
+                    Queue(1,:)= [];    
+                    else
+                        State= 0;
+                    end
                 end
             end
             if Type == VOIP
@@ -114,25 +121,30 @@ while (TransmittedPackets + TransmittedPacketsVoip) < P               % Stopping
                     MaxDelayVoip= Clock - ArrivalInstant;
                 end
                 TransmittedPacketsVoip= TransmittedPacketsVoip + 1;
-                if QueueOccupation > 0
+                if QueueOccupationVoIP > 0
+                    EventList = [EventList; DEPARTURE , Clock + 8*QueueVoIP(1,1)/(C*10^6) , QueueVoIP(1,1) , QueueVoIP(1,2), QueueVoIP(1,3)];
+                    QueueOccupationVoIP= QueueOccupationVoIP - QueueVoIP(1,1);
+                    QueueVoIP(1,:)= [];
+                else
+                    if QueueOccupation > 0
                     EventList = [EventList; DEPARTURE , Clock + 8*Queue(1,1)/(C*10^6) , Queue(1,1) , Queue(1,2), Queue(1,3)];
                     QueueOccupation= QueueOccupation - Queue(1,1);
-                    Queue(1,:)= [];
-                else
-                    State= 0;
+                    Queue(1,:)= [];    
+                    else
+                        State= 0;
+                    end
                 end
             end
     end
 end
 %Performance parameters determination:
 PL= 100*LostPackets/TotalPackets;      % in %
+PLvoip = 100*LostPacketsVoip/TotalPacketsVoip;
 APD= 1000*Delays/TransmittedPackets;   % in milliseconds
+APDvoip = 1000 *DelaysVoip/TransmittedPacketsVoip;
 MPD= 1000*MaxDelay;                    % in milliseconds
+MPDvoip = 1000* MaxDelayVoip;
 TT= 10^(-6)*TransmittedBytes*8/Clock;  % in Mbps
-
-PLvoip = 100*LostPacketsVoip/TotalPacketsVoip; % packet loss VOIP
-APDvoip = 1000 *DelaysVoip/TransmittedPacketsVoip; % average packet delay VOIP
-MPDvoip = 1000* MaxDelayVoip; % maximum packet delay VOIP
 end
 
 function out= GeneratePacketSize()
