@@ -164,27 +164,28 @@ alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
 % 
 % 
 % 
-% fprintf('===============\n')
-% fprintf('=== Task e) ===\n')
-% fprintf('===============\n')
-% lambdaArray = [ 100, 200, 100, 200, 500,1000, 500,1000];
-% cArray      = [   2,   2,   2,   2,  10,  10,  10,  10];
-% fArray      = [10^5,10^5,10^4,10^4,10^5,10^5,10^4,10^4];
-% 
-% for index = 1:8
-% 
-%     errors = 0;
-%     
-%     mm1Result = AveragePacketDelayMM1(cArray(index),lambdaArray(index));
-%     mg1Result = AveragePacketDelayMG1(cArray(index),lambdaArray(index));
-%     
-% %     fprintf('Case %s\n', alphabet(index))
-% %     fprintf('MM1 = %.2f\n',mm1Result)
-% %     fprintf('MG1 = %.2f\n',mg1Result)
-%     fprintf('%s & %d & %d & %d & %.4f & %.4f \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),mm1Result,mg1Result)
-% %     fprintf('\n')
-% end
-% fprintf('\n')
+fprintf('===============\n')
+fprintf('=== Task e) ===\n')
+fprintf('===============\n')
+lambdaArray = [ 100, 200, 100, 200, 500,1000, 500,1000];
+cArray      = [   2,   2,   2,   2,  10,  10,  10,  10];
+fArray      = [10^5,10^5,10^4,10^4,10^5,10^5,10^4,10^4];
+
+for index = 1:8
+
+    errors = 0;
+    
+    
+    
+%     fprintf('Case %s\n', alphabet(index))
+%     fprintf('Packet Loss      = %.2f +- %.2f\n', mediaPL, termPL)
+%     fprintf('Average Delay    = %.2f +- %.2f\n',mediaAPD,termAPD)
+%     fprintf('Maximum Delay    = %.2f +- %.2f\n',mediaMPD,termMPD)
+%     fprintf('Transm. Through. = %.2f +- %.2f\n', mediaTT, termTT)
+    fprintf('%s & %d & %d & %d & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f  \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),mediaPL,termPL,mediaAPD,termAPD,mediaMPD,termMPD,mediaTT,termTT)
+%     fprintf('\n')
+end
+fprintf('\n')
 % 
 % 
 % 
@@ -313,34 +314,34 @@ alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
 %     mpdResults(index) = mediaMPD;
 %     ttResults(index)  = mediaTT;
 %     
-%     fprintf('Case %s\n', alphabet(index))
-%     fprintf('Packet Loss      = %.2f +- %.2f\n', mediaPL, termPL)
-%     fprintf('Average Delay    = %.2f +- %.2f\n',mediaAPD,termAPD)
-%     fprintf('Maximum Delay    = %.2f +- %.2f\n',mediaMPD,termMPD)
-%     fprintf('Transm. Through. = %.2f +- %.2f\n', mediaTT, termTT)
+% %     fprintf('Case %s\n', alphabet(index))
+% %     fprintf('Packet Loss      = %.2f +- %.2f\n', mediaPL, termPL)
+% %     fprintf('Average Delay    = %.2f +- %.2f\n',mediaAPD,termAPD)
+% %     fprintf('Maximum Delay    = %.2f +- %.2f\n',mediaMPD,termMPD)
+% %     fprintf('Transm. Through. = %.2f +- %.2f\n', mediaTT, termTT)
 %     fprintf('%s & %d & %d & %d & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f  \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),mediaPL,termPL,mediaAPD,termAPD,mediaMPD,termMPD,mediaTT,termTT)
-%     fprintf('\n')
+% %     fprintf('\n')
 % end
 % fprintf('\n')
 % 
-% figure(1);
-% bar(lambdaArray,plResults);
-% xlabel("Packet Rate (pps)");
-% ylabel("Percentage of Packets Lost");
-% title(["Packet Loss"]);
-% 
-% figure(2);
-% bar(lambdaArray,[apdResults;mpdResults]);
-% xlabel("Packet Rate (pps)");
-% ylabel("Delay (ms)");
-% legend({"Average","Maximum"},"Location","northwest")
-% title(["Average and Maximum Delays"]);
-% 
-% figure(3);
-% bar(lambdaArray,ttResults);
-% xlabel("Packet Rate (pps)");
-% ylabel("Trans. Through. (Mbps)");
-% title(["Transmission Throughput"]);
+% % figure(1);
+% % bar(lambdaArray,plResults);
+% % xlabel("Packet Rate (pps)");
+% % ylabel("Percentage of Packets Lost");
+% % title(["Packet Loss"]);
+% % 
+% % figure(2);
+% % bar(lambdaArray,[apdResults;mpdResults]);
+% % xlabel("Packet Rate (pps)");
+% % ylabel("Delay (ms)");
+% % legend({"Average","Maximum"},"Location","northwest")
+% % title(["Average and Maximum Delays"]);
+% % 
+% % figure(3);
+% % bar(lambdaArray,ttResults);
+% % xlabel("Packet Rate (pps)");
+% % ylabel("Trans. Through. (Mbps)");
+% % title(["Transmission Throughput"]);
 % 
 % 
 % 

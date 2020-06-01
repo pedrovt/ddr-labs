@@ -1,4 +1,4 @@
-function [PL , APD , MPD , TT, PLvoip, APDvoip, MPDvoip, DelayMG1] = Simulator3(lambda,C,f,P, n)
+function [PL , APD , MPD , TT, PLvoip, APDvoip, MPDvoip, DelayMG1_voip, DelayMG1_data] = Simulator3(lambda,C,f,P, n)
 % INPUT PARAMETERS:
 %  lambda - packet rate (packets/sec)
 %  C      - link bandwidth (Mbps)
@@ -6,13 +6,10 @@ function [PL , APD , MPD , TT, PLvoip, APDvoip, MPDvoip, DelayMG1] = Simulator3(
 %  P      - number of packets (stopping criterium)
 %  n      - number of VoIP flows
 % OUTPUT PARAMETERS:
-%  PL      - packet loss (%)
-%  APD     - average packet delay (milliseconds)
-%  MPD     - maximum packet delay (milliseconds)
-%  TT      - transmitted throughput (Mbps)
-%  PLvoip  - packet loss VOIP
-%  APDvoip - average packet delay VOIP
-%  MPDvoip - maximum packet delay VOIP
+%  PL   - packet loss (%)
+%  APD  - average packet delay (milliseconds)
+%  MPD  - maximum packet delay (milliseconds)
+%  TT   - transmitted throughput (Mbps)
 
 %Events:
 ARRIVAL= 0;       % Arrival of a packet            
@@ -145,7 +142,7 @@ APDvoip = 1000 *DelaysVoip/TransmittedPacketsVoip;
 MPD= 1000*MaxDelay;                    % in milliseconds
 MPDvoip = 1000* MaxDelayVoip;
 TT= 10^(-6)*TransmittedBytes*8/Clock;  % in Mbps
-DelayMG1 =  MG1_Calc(lambda, C);
+[DelayMG1_voip, DelayMG1_data] =  MG1_Calc(lambda, C, n);
 end
 
 function out= GeneratePacketSize()
@@ -163,49 +160,64 @@ function out = GeneratePacketSizeVoip()
     out = randi([110 130]);
 end
 
-function W = MG1_Calc(lambda, C)
+function [W1, W2] = MG1_Calc(lambda, C, n)
         
     % variable initialization
-    lambda1 = lambda;
-    bpp = 8;   
-    n = 65:1517;
-    p_64 = 0.16;
-    p_1518 = 0.22;
+    lambda2 = lambda;
+    bpp = 8;  
+    nr_bytes_data = 65:1517;
     % medium packet size VoIP
-    mps = (110+140)/2;
+    mps = (110+130)/2;
     % average time between arrivals 
-    avg_time = (16+22)/2; % in miliseconds
+    %avg_time = (16+22)/2; % in miliseconds
 
     % lambda --> arrival rate
-    lambda2 = mps / avg_time*10^-3; % in seconds
+    lambda1 = (1/(20*10^-3)) *  n; % in seconds
     
+    % ESs data
     sum = 0;
-    for i = 1:size(n,2)
-        sum = sum + (n(i))*(0.62/(1518-65));
+    sum2 = 0;
+    for i = 1:size(nr_bytes_data,2)
+        sum = sum + (nr_bytes_data(i)*bpp)*(0.62/(1518-65));
+        sum2 = sum2 + ((nr_bytes_data(i)*bpp)/(C*10^6))^2*(0.62/(1518-65));
     end
     
     % miu --> packets per second --> connection capacity / medium packet size (in
     % bits)
-    u1 = (C * 10^6)/((64*0.16 + 0.22*1518 + sum)  * bpp);
-    u2 = (C*10^6) / (120*bpp);
-
+    u1 = (C*10^6) / (mps*bpp);
+    u2 = (C * 10^6)/(64*bpp*0.16 + 0.22*1518*bpp + sum);
+    
+    p_64 = 0.16;
+    p_1518 = 0.22;
+   
+    % ES = tempo * prob
+    ES_data = (64*bpp/(C*10^6))*p_64 + sum/(C*10^6) + (1518*bpp/(C*10^6))*p_1518;   
+    % ES2 = tempo^2 * prob
+    ES2_data = ((64*bpp/(C*10^6))^2 * p_64) + sum2 +  ((1518*bpp/(C*10^6)))^2 * 0.22;  
+    
+    % ES voip has a uniform distribution between 110 and 130
+    % ES2 --> service time
+    %ES_voip = 1/u2;
+    bytes_voip = 110:130;
+    sum3 = 0;
+    sum4 = 0;
+    for i = 1:size(bytes_voip, 2)
+        sum3 = sum3 + (((bytes_voip(i))*bpp/(C*10^6)))*(1/21);
+        sum4 = sum4 + (((bytes_voip(i))*bpp/(C*10^6))^2)*(1/21);
+    end
+   
+    ES_voip = sum3;
+    ES2_voip = sum4;
+    
     p1 = (lambda1/u1);
     p2 = (lambda2/u2);
     
-    % ES = tempo * prob --> service time
-    ES1 = (64*bpp/(C*10^6))*p_64 + sum/(C*10^6)*(0.62/(1518-65)) + (1518*bpp/(C*10^6))*p_1518;   
-    
-    % ES2 has a uniform distribution between 110 and 130
-    % ES2 --> --> service time
-    ES2 = 1/u2^2;
-    
-    WQ1 = ((lambda1*ES1^2) + (lambda2*ES2^2)) / 2*(1-p1);
-    WQ2 = ((lambda1*ES1^2) + (lambda2*ES2^2)) / 2*(1-p1)*(1-p1-p2);
+    WQ1 = ((lambda1*ES2_voip) + (lambda2*ES2_data)) / (2*(1-p1));
+    WQ2 = ((lambda1*ES2_voip) + (lambda2*ES2_data)) / (2*(1-p1)*(1-p1-p2));
 
     % atraso do sistema � igual ao atraso da fila de espera mais o tempo
     % que os pacotes demoram a serem transmitidos
-    W1 = WQ1 + ES1;
-    W2 = WQ2 + ES2;
-    
-    W = W1+W2;
+    W1 = (WQ1 + ES_voip) * 1000;
+    W2 = (WQ2 + ES_data) * 1000;
+   
 end

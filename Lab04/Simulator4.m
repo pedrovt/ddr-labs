@@ -6,13 +6,10 @@ function [PL , APD , MPD , TT, PLvoip, APDvoip, MPDvoip] = Simulator4(lambda,C,f
 %  P      - number of packets (stopping criterium)
 %  n      - number of VoIP flows
 % OUTPUT PARAMETERS:
-%  PL      - packet loss (%)
-%  APD     - average packet delay (milliseconds)
-%  MPD     - maximum packet delay (milliseconds)
-%  TT      - transmitted throughput (Mbps)
-%  PLvoip  - packet loss VOIP
-%  APDvoip - average packet delay VOIP
-%  MPDvoip - maximum packet delay VOIP
+%  PL   - packet loss (%)
+%  APD  - average packet delay (milliseconds)
+%  MPD  - maximum packet delay (milliseconds)
+%  TT   - transmitted throughput (Mbps)
 
 %Events:
 ARRIVAL= 0;       % Arrival of a packet            

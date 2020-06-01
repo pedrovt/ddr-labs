@@ -5,4 +5,4 @@ mg1 = [4.55,8.18,4.55,8.18,0.91,1.64,0.91,1.64];
 figure(1);
 bar(transpose([simul;mm1;mg1]));
 title(["Average Packet Delay"]);
-legend(["Simulated values","M/M/1","M/G/1"],"Location","northwest")
+legend(["Simulated ","Maximum"],"Location","northwest")
