@@ -391,34 +391,34 @@ alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
 %     mpdResults(index) = mediaMPD;
 %     ttResults(index)  = mediaTT;
 %     
-% %     fprintf('Case %s\n', alphabet(index))
-% %     fprintf('Packet Loss      = %.2f +- %.2f\n', mediaPL, termPL)
-% %     fprintf('Average Delay    = %.2f +- %.2f\n',mediaAPD,termAPD)
-% %     fprintf('Maximum Delay    = %.2f +- %.2f\n',mediaMPD,termMPD)
-% %     fprintf('Transm. Through. = %.2f +- %.2f\n', mediaTT, termTT)
+%     fprintf('Case %s\n', alphabet(index))
+%     fprintf('Packet Loss      = %.2f +- %.2f\n', mediaPL, termPL)
+%     fprintf('Average Delay    = %.2f +- %.2f\n',mediaAPD,termAPD)
+%     fprintf('Maximum Delay    = %.2f +- %.2f\n',mediaMPD,termMPD)
+%     fprintf('Transm. Through. = %.2f +- %.2f\n', mediaTT, termTT)
 %     fprintf('%s & %d & %d & %d & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f  \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),mediaPL,termPL,mediaAPD,termAPD,mediaMPD,termMPD,mediaTT,termTT)
-% %     fprintf('\n')
+%     fprintf('\n')
 % end
 % fprintf('\n')
 % 
-% % figure(1);
-% % bar(lambdaArray,plResults);
-% % xlabel("Packet Rate (pps)");
-% % ylabel("Percentage of Packets Lost");
-% % title(["Packet Loss"]);
-% % 
-% % figure(2);
-% % bar(lambdaArray,[apdResults;mpdResults]);
-% % xlabel("Packet Rate (pps)");
-% % ylabel("Delay (ms)");
-% % legend({"Average","Maximum"},"Location","northwest")
-% % title(["Average and Maximum Delays"]);
-% % 
-% % figure(3);
-% % bar(lambdaArray,ttResults);
-% % xlabel("Packet Rate (pps)");
-% % ylabel("Trans. Through. (Mbps)");
-% % title(["Transmission Throughput"]);
+% figure(1);
+% bar(lambdaArray,plResults);
+% xlabel("Packet Rate (pps)");
+% ylabel("Percentage of Packets Lost");
+% title(["Packet Loss"]);
+% 
+% figure(2);
+% bar(lambdaArray,[apdResults;mpdResults]);
+% xlabel("Packet Rate (pps)");
+% ylabel("Delay (ms)");
+% legend({"Average","Maximum"},"Location","northwest")
+% title(["Average and Maximum Delays"]);
+% 
+% figure(3);
+% bar(lambdaArray,ttResults);
+% xlabel("Packet Rate (pps)");
+% ylabel("Trans. Through. (Mbps)");
+% title(["Transmission Throughput"]);
 % 
 % 
 % 
@@ -469,34 +469,34 @@ alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
 %     mpdResults(index) = mediaMPD;
 %     ttResults(index)  = mediaTT;
 %     
-% %     fprintf('Case %s\n', alphabet(index))
-% %     fprintf('Packet Loss      = %.2f +- %.2f\n', mediaPL, termPL)
-% %     fprintf('Average Delay    = %.2f +- %.2f\n',mediaAPD,termAPD)
-% %     fprintf('Maximum Delay    = %.2f +- %.2f\n',mediaMPD,termMPD)
-% %     fprintf('Transm. Through. = %.2f +- %.2f\n', mediaTT, termTT)
+%     fprintf('Case %s\n', alphabet(index))
+%     fprintf('Packet Loss      = %.2f +- %.2f\n', mediaPL, termPL)
+%     fprintf('Average Delay    = %.2f +- %.2f\n',mediaAPD,termAPD)
+%     fprintf('Maximum Delay    = %.2f +- %.2f\n',mediaMPD,termMPD)
+%     fprintf('Transm. Through. = %.2f +- %.2f\n', mediaTT, termTT)
 %     fprintf('%s & %d & %d & %d & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f & %.2f$\\pm$%.2f  \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),mediaPL,termPL,mediaAPD,termAPD,mediaMPD,termMPD,mediaTT,termTT)
-% %     fprintf('\n')
+%     fprintf('\n')
 % end
 % fprintf('\n')
 % 
-% % figure(1);
-% % bar(lambdaArray,plResults);
-% % xlabel("Packet Rate (pps)");
-% % ylabel("Percentage of Packets Lost");
-% % title(["Packet Loss"]);
-% % 
-% % figure(2);
-% % bar(lambdaArray,[apdResults;mpdResults]);
-% % xlabel("Packet Rate (pps)");
-% % ylabel("Delay (ms)");
-% % legend({"Average","Maximum"},"Location","northwest")
-% % title(["Average and Maximum Delays"]);
-% % 
-% % figure(3);
-% % bar(lambdaArray,ttResults);
-% % xlabel("Packet Rate (pps)");
-% % ylabel("Trans. Through. (Mbps)");
-% % title(["Transmission Throughput"]);
+% figure(1);
+% bar(lambdaArray,plResults);
+% xlabel("Packet Rate (pps)");
+% ylabel("Percentage of Packets Lost");
+% title(["Packet Loss"]);
+% 
+% figure(2);
+% bar(lambdaArray,[apdResults;mpdResults]);
+% xlabel("Packet Rate (pps)");
+% ylabel("Delay (ms)");
+% legend({"Average","Maximum"},"Location","northwest")
+% title(["Average and Maximum Delays"]);
+% 
+% figure(3);
+% bar(lambdaArray,ttResults);
+% xlabel("Packet Rate (pps)");
+% ylabel("Trans. Through. (Mbps)");
+% title(["Transmission Throughput"]);
 % 
 % 
 % 
@@ -560,16 +560,16 @@ alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
 %     apdVoipResults(index) = mediaVoipAPD;
 %     mpdVoipResults(index) = mediaVoipMPD;
 %     
-% %     fprintf('Case %s\n', alphabet(index))
-% %     fprintf('Data Packet Loss   = %.2f +- %.2f\n',     mediaPL,     termPL)
-% %     fprintf('Data Average Delay = %.2f +- %.2f\n',    mediaAPD,    termAPD)
-% %     fprintf('Data Maximum Delay = %.2f +- %.2f\n',    mediaMPD,    termMPD)
-% %     fprintf('Transm. Through.   = %.2f +- %.2f\n',     mediaTT,     termTT)
-% %     fprintf('VoIP Packet Loss   = %.2f +- %.2f\n', mediaVoipPL, termVoipPL)
-% %     fprintf('VoIP Average Delay = %.2f +- %.2f\n',mediaVoipAPD,termVoipAPD)
-% %     fprintf('VoIP Maximum Delay = %.2f +- %.2f\n',mediaVoipMPD,termVoipMPD)
+%     fprintf('Case %s\n', alphabet(index))
+%     fprintf('Data Packet Loss   = %.2f +- %.2f\n',     mediaPL,     termPL)
+%     fprintf('Data Average Delay = %.2f +- %.2f\n',    mediaAPD,    termAPD)
+%     fprintf('Data Maximum Delay = %.2f +- %.2f\n',    mediaMPD,    termMPD)
+%     fprintf('Transm. Through.   = %.2f +- %.2f\n',     mediaTT,     termTT)
+%     fprintf('VoIP Packet Loss   = %.2f +- %.2f\n', mediaVoipPL, termVoipPL)
+%     fprintf('VoIP Average Delay = %.2f +- %.2f\n',mediaVoipAPD,termVoipAPD)
+%     fprintf('VoIP Maximum Delay = %.2f +- %.2f\n',mediaVoipMPD,termVoipMPD)
 %     fprintf('%s & %d & %d & %d & %d & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f  \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),nArray(index),mediaPL,termPL,mediaVoipPL,termVoipPL,mediaAPD,termAPD,mediaVoipAPD,termVoipAPD,mediaMPD,termMPD,mediaVoipMPD,termVoipMPD,mediaTT,termTT)
-% %     fprintf('\n')
+%     fprintf('\n')
 % end
 % fprintf('\n')
 % 
@@ -648,23 +648,23 @@ alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
 %     delayVoipMG1Results(index) = mean(delayVoipMG1Array);
 %     delayVoipMG1Incert(index)  = norminv(1-alfa/2)*sqrt(var(delayVoipMG1Array)/(numberOfSims-errors));
 %     
-% %     fprintf('Case %s\n', alphabet(index))
-% %     fprintf('Data Packet Loss   = %.2f +- %.2f\n',     mediaPL,     termPL)
-% %     fprintf('Data Average Delay = %.2f +- %.2f\n',    mediaAPD,    termAPD)
-% %     fprintf('Data Maximum Delay = %.2f +- %.2f\n',    mediaMPD,    termMPD)
-% %     fprintf('Transm. Through.   = %.2f +- %.2f\n',     mediaTT,     termTT)
-% %     fprintf('VoIP Packet Loss   = %.2f +- %.2f\n', mediaVoipPL, termVoipPL)
-% %     fprintf('VoIP Average Delay = %.2f +- %.2f\n',mediaVoipAPD,termVoipAPD)
-% %     fprintf('VoIP Maximum Delay = %.2f +- %.2f\n',mediaVoipMPD,termVoipMPD)
-% %     fprintf('MG1 Data Delay     = %.2f +- %.2f\n',mediaDataMG1,termDataMG1)
-% %     fprintf('MG1 Voip Delay     = %.2f +- %.2f\n',mediaVoipMG1,termVoipMG1)
-% %     fprintf('%s & %d & %d & %d & %d & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f  \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),nArray(index),mediaPL,termPL,mediaVoipPL,termVoipPL,mediaAPD,termAPD,mediaVoipAPD,termVoipAPD,mediaMPD,termMPD,mediaVoipMPD,termVoipMPD,mediaTT,termTT)
+%     fprintf('Case %s\n', alphabet(index))
+%     fprintf('Data Packet Loss   = %.2f +- %.2f\n',     mediaPL,     termPL)
+%     fprintf('Data Average Delay = %.2f +- %.2f\n',    mediaAPD,    termAPD)
+%     fprintf('Data Maximum Delay = %.2f +- %.2f\n',    mediaMPD,    termMPD)
+%     fprintf('Transm. Through.   = %.2f +- %.2f\n',     mediaTT,     termTT)
+%     fprintf('VoIP Packet Loss   = %.2f +- %.2f\n', mediaVoipPL, termVoipPL)
+%     fprintf('VoIP Average Delay = %.2f +- %.2f\n',mediaVoipAPD,termVoipAPD)
+%     fprintf('VoIP Maximum Delay = %.2f +- %.2f\n',mediaVoipMPD,termVoipMPD)
+%     fprintf('MG1 Data Delay     = %.2f +- %.2f\n',mediaDataMG1,termDataMG1)
+%     fprintf('MG1 Voip Delay     = %.2f +- %.2f\n',mediaVoipMG1,termVoipMG1)
+%     fprintf('%s & %d & %d & %d & %d & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f  \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),nArray(index),mediaPL,termPL,mediaVoipPL,termVoipPL,mediaAPD,termAPD,mediaVoipAPD,termVoipAPD,mediaMPD,termMPD,mediaVoipMPD,termVoipMPD,mediaTT,termTT)
 %     fprintf('%s & %d & %d & %d & %d & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),nArray(index),mediaPL,termPL,mediaVoipPL,termVoipPL)
 %     fprintf('%s & %d & %d & %d & %d & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),nArray(index),mediaAPD,termAPD,mediaVoipAPD,termVoipAPD)
 %     fprintf('%s & %d & %d & %d & %d & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),mediaMPD,termMPD,mediaVoipMPD,termVoipMPD)
 %     fprintf('%s & %d & %d & %d & %d & %.2f$\\pm$%.2f \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),nArray(index),mediaTT,termTT)
 %     fprintf('%s & %d & %d & %d & %d & %.2f & %.2f  \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),nArray(index),mediaDataMG1,mediaVoipMG1)
-% %     fprintf('\n')
+%     fprintf('\n')
 % end
 % for index = 1:nEntries
 %     fprintf('%s & %d & %d & %d & %d & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),nArray(index),plResults(index),plIncert(index),plVoipResults(index),plVoipIncert(index))
@@ -680,19 +680,19 @@ alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
 % end
 % fprintf('\n')
 % 
-% % figure(1);
-% % bar(transpose([apdResults;delayDataMG1Results]));
-% % xlabel("Case");
-% % ylabel("Delay (ms)");
-% % title("Average Data Packet Delay");
-% % legend(["Obtained","Theoretical"],"Location","northwest")
-% % 
-% % figure(2);
-% % bar(transpose([apdVoipResults;delayVoipMG1Results]));
-% % xlabel("Case");
-% % ylabel("Delay (ms)");
-% % title("Maximum Voip Packet Delay");
-% % legend(["Obtained","Theoretical"],"Location","northwest")
+% figure(1);
+% bar(transpose([apdResults;delayDataMG1Results]));
+% xlabel("Case");
+% ylabel("Delay (ms)");
+% title("Average Data Packet Delay");
+% legend(["Obtained","Theoretical"],"Location","northwest")
+% 
+% figure(2);
+% bar(transpose([apdVoipResults;delayVoipMG1Results]));
+% xlabel("Case");
+% ylabel("Delay (ms)");
+% title("Maximum Voip Packet Delay");
+% legend(["Obtained","Theoretical"],"Location","northwest")
 % 
 % 
 % 
@@ -775,14 +775,14 @@ alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
 %     apdVoipIncert(index)  = termVoipAPD;
 %     mpdVoipIncert(index)  = termVoipMPD;
 %     
-% %     fprintf('Case %s\n', alphabet(index))
-% %     fprintf('Data Packet Loss   = %.2f +- %.2f\n',     mediaPL,     termPL)
-% %     fprintf('Data Average Delay = %.2f +- %.2f\n',    mediaAPD,    termAPD)
-% %     fprintf('Data Maximum Delay = %.2f +- %.2f\n',    mediaMPD,    termMPD)
-% %     fprintf('Transm. Through.   = %.2f +- %.2f\n',     mediaTT,     termTT)
-% %     fprintf('VoIP Packet Loss   = %.2f +- %.2f\n', mediaVoipPL, termVoipPL)
-% %     fprintf('VoIP Average Delay = %.2f +- %.2f\n',mediaVoipAPD,termVoipAPD)
-% %     fprintf('VoIP Maximum Delay = %.2f +- %.2f\n',mediaVoipMPD,termVoipMPD)
+%     fprintf('Case %s\n', alphabet(index))
+%     fprintf('Data Packet Loss   = %.2f +- %.2f\n',     mediaPL,     termPL)
+%     fprintf('Data Average Delay = %.2f +- %.2f\n',    mediaAPD,    termAPD)
+%     fprintf('Data Maximum Delay = %.2f +- %.2f\n',    mediaMPD,    termMPD)
+%     fprintf('Transm. Through.   = %.2f +- %.2f\n',     mediaTT,     termTT)
+%     fprintf('VoIP Packet Loss   = %.2f +- %.2f\n', mediaVoipPL, termVoipPL)
+%     fprintf('VoIP Average Delay = %.2f +- %.2f\n',mediaVoipAPD,termVoipAPD)
+%     fprintf('VoIP Maximum Delay = %.2f +- %.2f\n',mediaVoipMPD,termVoipMPD)
 %     fprintf('%s & %d & %d & %d & %d & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f  \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),nArray(index),mediaPL,termPL,mediaVoipPL,termVoipPL,mediaAPD,termAPD,mediaVoipAPD,termVoipAPD,mediaMPD,termMPD,mediaVoipMPD,termVoipMPD,mediaTT,termTT)
 % end
 % fprintf('\n')
@@ -884,14 +884,14 @@ alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
 %     apdVoipIncert(index)  = termVoipAPD;
 %     mpdVoipIncert(index)  = termVoipMPD;
 %     
-% %     fprintf('Case %s\n', alphabet(index))
-% %     fprintf('Data Packet Loss   = %.2f +- %.2f\n',     mediaPL,     termPL)
-% %     fprintf('Data Average Delay = %.2f +- %.2f\n',    mediaAPD,    termAPD)
-% %     fprintf('Data Maximum Delay = %.2f +- %.2f\n',    mediaMPD,    termMPD)
-% %     fprintf('Transm. Through.   = %.2f +- %.2f\n',     mediaTT,     termTT)
-% %     fprintf('VoIP Packet Loss   = %.2f +- %.2f\n', mediaVoipPL, termVoipPL)
-% %     fprintf('VoIP Average Delay = %.2f +- %.2f\n',mediaVoipAPD,termVoipAPD)
-% %     fprintf('VoIP Maximum Delay = %.2f +- %.2f\n',mediaVoipMPD,termVoipMPD)
+%     fprintf('Case %s\n', alphabet(index))
+%     fprintf('Data Packet Loss   = %.2f +- %.2f\n',     mediaPL,     termPL)
+%     fprintf('Data Average Delay = %.2f +- %.2f\n',    mediaAPD,    termAPD)
+%     fprintf('Data Maximum Delay = %.2f +- %.2f\n',    mediaMPD,    termMPD)
+%     fprintf('Transm. Through.   = %.2f +- %.2f\n',     mediaTT,     termTT)
+%     fprintf('VoIP Packet Loss   = %.2f +- %.2f\n', mediaVoipPL, termVoipPL)
+%     fprintf('VoIP Average Delay = %.2f +- %.2f\n',mediaVoipAPD,termVoipAPD)
+%     fprintf('VoIP Maximum Delay = %.2f +- %.2f\n',mediaVoipMPD,termVoipMPD)
 %     fprintf('%s & %d & %d & %d & %d & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f  \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),nArray(index),mediaPL,termPL,mediaVoipPL,termVoipPL,mediaAPD,termAPD,mediaVoipAPD,termVoipAPD,mediaMPD,termMPD,mediaVoipMPD,termVoipMPD,mediaTT,termTT)
 % end
 % fprintf('\n')
@@ -993,14 +993,14 @@ alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q',
 %     apdVoipIncert(index)  = termVoipAPD;
 %     mpdVoipIncert(index)  = termVoipMPD;
 %     
-% %     fprintf('Case %s\n', alphabet(index))
-% %     fprintf('Data Packet Loss   = %.2f +- %.2f\n',     mediaPL,     termPL)
-% %     fprintf('Data Average Delay = %.2f +- %.2f\n',    mediaAPD,    termAPD)
-% %     fprintf('Data Maximum Delay = %.2f +- %.2f\n',    mediaMPD,    termMPD)
-% %     fprintf('Transm. Through.   = %.2f +- %.2f\n',     mediaTT,     termTT)
-% %     fprintf('VoIP Packet Loss   = %.2f +- %.2f\n', mediaVoipPL, termVoipPL)
-% %     fprintf('VoIP Average Delay = %.2f +- %.2f\n',mediaVoipAPD,termVoipAPD)
-% %     fprintf('VoIP Maximum Delay = %.2f +- %.2f\n',mediaVoipMPD,termVoipMPD)
+%     fprintf('Case %s\n', alphabet(index))
+%     fprintf('Data Packet Loss   = %.2f +- %.2f\n',     mediaPL,     termPL)
+%     fprintf('Data Average Delay = %.2f +- %.2f\n',    mediaAPD,    termAPD)
+%     fprintf('Data Maximum Delay = %.2f +- %.2f\n',    mediaMPD,    termMPD)
+%     fprintf('Transm. Through.   = %.2f +- %.2f\n',     mediaTT,     termTT)
+%     fprintf('VoIP Packet Loss   = %.2f +- %.2f\n', mediaVoipPL, termVoipPL)
+%     fprintf('VoIP Average Delay = %.2f +- %.2f\n',mediaVoipAPD,termVoipAPD)
+%     fprintf('VoIP Maximum Delay = %.2f +- %.2f\n',mediaVoipMPD,termVoipMPD)
 %     fprintf('%s & %d & %d & %d & %d & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f/%.2f$\\pm$%.2f & %.2f$\\pm$%.2f  \\\\ \\hline\n',alphabet(index),lambdaArray(index),cArray(index),fArray(index),nArray(index),mediaPL,termPL,mediaVoipPL,termVoipPL,mediaAPD,termAPD,mediaVoipAPD,termVoipAPD,mediaMPD,termMPD,mediaVoipMPD,termVoipMPD,mediaTT,termTT)
 % end
 % fprintf('\n')
